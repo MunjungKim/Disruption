@@ -3,15 +3,15 @@
 Purpose: 
     Training embedding space of citation network
 Input:
-    - -m training model. 
-        * 'r2v' : residual2vec
-        * 'n2v' : node2vec
-    - -g group membership of each paper a stochastic block model is generated for residual2vec
-    - -d dimension of the embedding space
-    - -n citation network with sparse network datatype
-    - -w window size
-    - -v device name
-    - -c configuration file
+    NET : citation network file
+    DIM : Dimension of the embedding vectors
+    WIN : Window size
+    DEV1 : Device for in-vectors
+    DEV2 : Device for out-vectors
+    NAME : Name of the network
+    Q : The value of q for the biased random walk
+    EPOCH : the number of epochs
+    BATCH : the size of the batches
 Ouput:
     - in_vec.npy : .npy file of in-vectors 
     - out_vec.npy : .npy file of out-vectors
@@ -22,7 +22,7 @@ Author: Munjung Kim
 
 import scipy
 import sys
-import utils
+# import utils
 import node2vecs
 import logging
 import matplotlib.pyplot as plt
@@ -39,7 +39,7 @@ if __name__ == "__main__":
     logging.basicConfig(filename = 'Embedding.log', level = logging.INFO, format='%(asctime)s %(message)s')
     
 
-    DATA_DIR = '/home/munjkim/SoS/Disruptiveness/data'
+    DATA_DIR = '/home/munjkim/SoS/Disruption/data'
 
     NET = sys.argv[1] # citation network file. The type is .npz
     DIM = int(sys.argv[2]) #Dimension of the embedding
@@ -101,7 +101,6 @@ if __name__ == "__main__":
         dataset=dataset,
         loss_func=loss_func,
         batch_size=BATCH,
-        device=DEV, # gpu is also available
         learning_rate=1e-3,
         num_workers=15,
     )

@@ -1,0 +1,10 @@
+2023-06-04 14:47:24,784 Arg Parse Success.
+2023-06-04 14:47:24,784 /home/munjkim/SoS/Disruption/data/original/citation_net.npz
+2023-06-04 14:47:25,659 Dimension: 200
+2023-06-04 14:47:25,659 gpu
+2023-06-04 14:47:32,485 Start training: Dim200_Win5
+2023-06-04 14:49:32,081 Arg Parse Success.
+2023-06-04 14:49:32,081 /home/munjkim/SoS/Disruption/data/original/citation_net.npz
+2023-06-04 14:49:32,993 Dimension: 150
+2023-06-04 14:49:32,993 gpu
+2023-06-04 14:49:39,216 Start training: Dim150_Win5

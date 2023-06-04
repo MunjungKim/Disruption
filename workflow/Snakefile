@@ -1,0 +1,69 @@
+from os.path import join as j
+import itertools
+import os
+
+
+wildcard_constraints:
+    number="\d+"
+
+
+configfile: "config.yaml"
+
+DATA_DIR = config["data_dir"]
+
+ALL_NETWORKS_DIR = j(DATA_DIR,"{network_name}")
+ALL_NETWORKS = j(ALL_NETWORKS_DIR, "citation_net.npz")
+
+ORIGINAL_DIR = j(DATA_DIR, "original")
+ORIGINAL_NETWORK = j(ORIGINAL_DIR, "citation_net.npz")
+
+VEC_TYPES = ['in','out']
+
+ALL_NETWORKS_NAME = ['original']
+
+EMBEDDING_VECTORS = j(DATA_DIR, "{{network_name}}/{{dim}}_{{win}}_q_{{q}}_ep_{{ep}}_bs_{{bs}}_embedding/{vec_type}.npy")
+DISTANCE = j(ALL_NETWORKS_DIR,"{dim}_{win}_q_{q}_ep_{ep}_bs_{bs}_embedding/distance.npy")
+
+GROUP_MEMBERSHIP = ['year','reference','citation']
+EMBEDDING_DIMENSION = ['200']
+WINDOW = ['5']
+
+
+rule all:
+    input:
+        expand(DISTANCE,network_name = ALL_NETWORKS_NAME, model= 'n2v', group_membership = 'None', dim = EMBEDDING_DIMENSION, win=WINDOW, q =['1','5','10'],ep = [1,2,5],bs = [256,256*4, 256*16])
+
+
+rule embedding_all_network:
+    """generating embedding vectors of citation newtork"""
+    input:
+        ALL_NETWORKS
+    params:
+        Name = "{network_name}",
+        Dsize = "{dim}",
+        Window = "{win}",
+        Device1 = "6",
+        Device2 = "7",
+        q = "{q}",
+        epoch = "{ep}",
+        batch = "{bs}"
+    output:
+         expand(EMBEDDING_VECTORS,vec_type=VEC_TYPES)
+ 
+    shell:
+        'python3 scripts/Embedding.py {input} {params.Dsize} {params.Window} {params.Device1} {params.Device2} {params.Name} {params.q} {params.epoch} {params.batch}'  
+        
+
+rule calculating_distance:
+    """calculating distance based on the in-vectors and out-vectors"""
+    input:
+        invec = expand(EMBEDDING_VECTORS,vec_type = "in"),
+        outvec = expand(EMBEDDING_VECTORS,vec_type = "out"),
+        net = ALL_NETWORKS
+    params:
+        Device = "cuda:6"
+    output:
+         DISTANCE
+    shell:
+        'python3 scripts/Distance_Disruption.py distance {input.invec} {input.outvec} {input.net} {params.Device}'  
+ 
