@@ -1,0 +1,8 @@
+# Network data
+*.npz
+
+# embedding vectors
+*.npy
+
+#ipynb_checkpoints
+/.ipynb_checkpoints/
