@@ -17,7 +17,7 @@ This command will locate the rule for generating the `{working_directory}/data/o
 
 This rule takes the `{working_directory}/data/original/150_5_q_1_ep_5_bs_4096_embedding/in.npy` and `{working_directory}/data/original/150_5_q_1_ep_5_bs_4096_embedding/out.npy` files as inputs, and Snakemake will execute the rule responsible for generating these files, named as the `embedding_all_network` rule in our Snakefile. 
 
-The `embedding_all_network` rule executes the following command: `python3 scripts/Embedding.py {input} {params.Dsize} {params.Window} {params.Device1} {params.Device2} {params.Name} {params.q} {params.epoch} {params.batch}`. The parameters for this command are defined within the embedding_all_network rule as follows:s
+The `embedding_all_network` rule executes the following command: `python3 scripts/Embedding.py {input} {params.Dsize} {params.Window} {params.Device1} {params.Device2} {params.Name} {params.q} {params.epoch} {params.batch}`. The parameters for this command are defined within the embedding_all_network rule as follows:
 
 ```
 
@@ -33,4 +33,9 @@ The `embedding_all_network` rule executes the following command: `python3 script
 
 ```
 
+
+# Without Snakemake
+
+
+Without snakemake, you can execute the following command.
 
