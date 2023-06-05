@@ -39,6 +39,8 @@ The `embedding_all_network` rule executes the following command: `python3 script
 
 Without snakemake, you can follow the following steps.
 
+
+
 ## Embedding Calculation
 
 
@@ -56,7 +58,8 @@ python3 scripts/Embedding.py /data/original/citation_net.npz 200 5 6 7 original 
 ```
 
 
-`Embedding.py` will train the node2vec model and save the result of in-vectors under the path `{path/to/citation_network_file}/{DIM}_{WIN}_q_{Q}_ep_{EPOCH}_bs_{BATCH}_embedding/`. For instance, the above command will save in and out vectors in 
+`Embedding.py` will train the node2vec model and save the result of in-vectors under the path `{path/to/citation_network_file}/{DIM}_{WIN}_q_{Q}_ep_{EPOCH}_bs_{BATCH}_embedding/`. For instance, the above command will save in and out vectors in the path `/data/original/200_5_q_1_ep_5_bs_1024_embedding/in.npy` and `/data/original/200_5_q_1_ep_5_bs_1024_embedding/out.npy`.
+
 
 ## Distance Calculation
 
