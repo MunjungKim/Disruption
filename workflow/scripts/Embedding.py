@@ -3,15 +3,18 @@
 Purpose: 
     Training embedding space of citation network
 Input:
-    NET : citation network file
-    DIM : Dimension of the embedding vectors
-    WIN : Window size
-    DEV1 : Device for in-vectors
-    DEV2 : Device for out-vectors
-    NAME : Name of the network
-    Q : The value of q for the biased random walk
-    EPOCH : the number of epochs
-    BATCH : the size of the batches
+    argv (list): Command-line arguments
+
+    - argv[0]: The script name
+    - argv[1]: Path to the citation network file
+    - argv[2]: Dimension of the embedding vectors
+    - argv[3]: Size of the window
+    - argv[4]: Device name where the in-vectors are stored
+    - argv[5]: Device name where the out-vectors are stored and the training process will run
+    - argv[6]: Name of the citation network. This parameter indicates the type of modified citation network based on the original citation network. For example, 'random' represents a randomly rewired citation network.
+    - argv[7]: Value of q for the biased random walk
+    - argv[8]: Epoch size
+    - argv[9]: Batch size
 Ouput:
     - in_vec.npy : .npy file of in-vectors 
     - out_vec.npy : .npy file of out-vectors

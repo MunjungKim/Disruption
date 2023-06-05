@@ -2,10 +2,14 @@
 Purpose: 
     Calculate distance and disruption index
 Input:
-    - -e numpy files containing embedding vectors based on citation network
-    - -n citation network with sparse network datatype
-    - -c configuration file
-    - -v device name
+    argv (list): Command-line arguments
+
+    - argv[0] : The script name
+    - argv[1] : Measure index type: you can choose between `disruption` (previous measure) and `distance`.
+    - argv[2] : path to the in-vector numpy file
+    - argv[3] : path to the out-vector numpy file
+    - argv[4] : path to the network file
+    - argv[5] : device name to calculate the distance
 
 Ouput:
     - Disruption_{embedding_file_namees}.npy : .npy file that contains disruption index of each paper
