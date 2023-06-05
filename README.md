@@ -37,5 +37,37 @@ The `embedding_all_network` rule executes the following command: `python3 script
 # Without Snakemake
 
 
-Without snakemake, you can execute the following command.
+Without snakemake, you can follow the following steps.
 
+## Embedding Calculation
+
+
+To calculate the embedding vectors, you can use the following command line:
+
+```
+python3 scripts/Embedding.py {path/to/citation_network_file} {embedding_dimension} {window_size} {device1} {device2} {citation_network_name} {q_value} {epoch_size} {batch_size}
+```
+
+For example, you can run the command as shown below:
+
+```
+python3 scripts/Embedding.py /data/original/citation_net.npz 200 5 6 7 original 1 5 1024
+
+```
+
+
+`Embedding.py` will train the node2vec model and save the result of in-vectors under the path `{path/to/citation_network_file}/{DIM}_{WIN}_q_{Q}_ep_{EPOCH}_bs_{BATCH}_embedding/`. For instance, the above command will save in and out vectors in 
+
+## Distance Calculation
+
+Based on the embedding vectors you calculate from the above process, you can execute the following command to calculate the distance. 
+
+```
+python3 scripts/Distance_Disruption.py distance {path/to/invectors}  {path/to/outvectors} {path/to/citation_network_file} {device name}
+```
+
+For example, you can run the command as shown below:
+
+```
+python3 scripts/Distance_Disruption.py distance /data/original/  {path/to/outvectors} {path/to/citation_network_file} {device name}
+```
