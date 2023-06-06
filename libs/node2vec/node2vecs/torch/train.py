@@ -20,8 +20,8 @@ def train(
     num_workers=1,
 ):
     # Set the device parameter if not specified
-    if device is None:
-        device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    # if device is None:
+    #     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
     dataloader = DataLoader(
         dataset,

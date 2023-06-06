@@ -6,7 +6,7 @@ https://munjungkim.github.io/files/ic2s2_2023_03_02_disruptiveness.pdf
 
 # Snakemake
 
-Since the current python code requires many parameters, it would be better to use snakemake tool. Once a container has been created, you can easily execute the following commands in the `workflow` directory:
+Since the current python code requires many parameters, it would be better to use snakemake tool. Once a container has been created, you can execute the following commands in the `workflow` directory:
 
 
 ```

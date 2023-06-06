@@ -46,12 +46,13 @@ rule embedding_all_network:
         Device2 = "7",
         q = "{q}",
         epoch = "{ep}",
-        batch = "{bs}"
+        batch = "{bs}",
+        work_dir = DATA_DIR
     output:
          expand(EMBEDDING_VECTORS,vec_type=VEC_TYPES)
  
     shell:
-        'python3 scripts/Embedding.py {input} {params.Dsize} {params.Window} {params.Device1} {params.Device2} {params.Name} {params.q} {params.epoch} {params.batch}'  
+        'python3 scripts/Embedding.py {input} {params.Dsize} {params.Window} {params.Device1} {params.Device2} {params.Name} {params.q} {params.epoch} {params.batch} {params.work_dir}'  
         
 
 rule calculating_distance:
@@ -65,5 +66,5 @@ rule calculating_distance:
     output:
          DISTANCE
     shell:
-        'python3 scripts/Distance_Disruption.py distance {input.invec} {input.outvec} {input.net} {params.Device}'  
+        'python3 scripts/Distance_disruption.py distance {input.invec} {input.outvec} {input.net} {params.Device}'  
  

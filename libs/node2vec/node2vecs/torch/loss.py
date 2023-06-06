@@ -38,7 +38,7 @@ class Node2VecTripletLoss(nn.Module):
     def forward(self, model, iwords, owords, nwords):
         ivectors = model.forward(iwords.to('cuda:0')).unsqueeze(2).to('cuda:1') # put target words into cuda:0 and transfer its vectors in cuda:0 into cuda:1
         ovectors = model.forward(owords.to('cuda:1'),forward_in = False)
-        nvectors = model.forward_o(nwords.to('cuda:1'),forward_in=False).neg()
+        nvectors = model.forward(nwords.to('cuda:1'),forward_in=False).neg()
         if self.logsigmoid(torch.bmm(ovectors, ivectors).squeeze()).dim() == 1:
             oloss = self.logsigmoid(torch.bmm(ovectors, ivectors).squeeze()).mean(dim=0)
             

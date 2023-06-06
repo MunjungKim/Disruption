@@ -52,7 +52,7 @@ class Word2Vec(nn.Module):
             self.ivectors.weight, -0.5 / embedding_size, 0.5 / embedding_size
         )
         print("input in-vectors to cuda:0")
-        self.invectors.to('cuda:0') # put in-vectors into cuda:0
+        self.ivectors.to('cuda:0') # put in-vectors into cuda:0
         print("input out-vectors to cuda:1")
         self.ovectors.to('cuda:1') # put out-vectors into cuda:1
 
