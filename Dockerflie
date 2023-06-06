@@ -1,6 +1,0 @@
-FROM nvcr.io/nvidia/pytorch:23.04-py3
-RUN mkdir -p /libs
-ADD /libs/node2vec /libs/node2vec
-WORKDIR /libs
-RUN pip install -e node2vec
-RUN pip install snakemake
