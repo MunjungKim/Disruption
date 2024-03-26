@@ -1,3 +1,5 @@
+The original node2vec code that implements the restriction of the context window can be found here [https://github.com/skojaku/node2vec](https://github.com/skojaku/node2vec)
+
 # Disruption
 
 This repository contains the code for:
